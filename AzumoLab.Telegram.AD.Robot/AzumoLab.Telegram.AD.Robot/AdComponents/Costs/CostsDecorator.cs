@@ -8,16 +8,21 @@ namespace AzumoLab.Telegram.AD.Robot.AdComponents.Costs
 {
     internal abstract class CostsDecorator : ICosts
     {
-        protected ICosts Costs;
+        protected List<ICosts> Costs;
 
-        public CostsDecorator(ICosts Costs)
+        public CostsDecorator(params ICosts[] Costs)
         {
-            this.Costs = Costs;
+            this.Costs = new List<ICosts>(Costs);
         }
 
         public decimal Calculate()
         {
-            return Costs.Calculate();
+            decimal result = decimal.Zero;
+            foreach (ICosts cost in Costs)
+            {
+                result = decimal.Add(result, cost.Calculate());
+            }
+            return result;
         }
     }
 }

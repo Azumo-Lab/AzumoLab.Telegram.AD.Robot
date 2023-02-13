@@ -26,5 +26,10 @@ namespace AzumoLab.Telegram.AD.Robot.AdModels
         /// 展示商的用户ID（Telegram用户ID）
         /// </summary>
         public long TelegramUserID { get; set; }
+
+        /// <summary>
+        /// 面对展示商的报价
+        /// </summary>
+        public List<AdShowTypeCosts> ShowTypeCosts { get; set; }
     }
 }
